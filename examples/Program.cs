@@ -12,14 +12,14 @@ internal class Program
         Console.WriteLine("--------------");
 
         // Daily at 8:30 AM
-        var daily = CronTools.CronBuilder.Create()
+        var daily = CronBuilder.Create()
             .AtMinute(30)
             .AtHour(8)
             .Build();
         Console.WriteLine($"Daily at 8:30 AM: {daily}");
 
         // Every Monday at 9:00 AM
-        var weekly = CronTools.CronBuilder.Create()
+        var weekly = CronBuilder.Create()
             .AtMinute(0)
             .AtHour(9)
             .OnMonday()
@@ -27,7 +27,7 @@ internal class Program
         Console.WriteLine($"Every Monday at 9:00 AM: {weekly}");
 
         // 15th of every month at 2:30 PM
-        var monthly = CronTools.CronBuilder.Create()
+        var monthly = CronBuilder.Create()
             .AtMinute(30)
             .AtHour(14)
             .OnDay(15)
@@ -35,7 +35,7 @@ internal class Program
         Console.WriteLine($"15th of every month at 2:30 PM: {monthly}");
 
         // Every 5 minutes
-        var everyFiveMinutes = CronTools.CronBuilder.Create()
+        var everyFiveMinutes = CronBuilder.Create()
             .EveryNMinutes(5)
             .Build();
         Console.WriteLine($"Every 5 minutes: {everyFiveMinutes}");
@@ -45,7 +45,7 @@ internal class Program
         Console.WriteLine("-----------------");
 
         // Weekdays at 9 AM and 5 PM
-        var weekdaysMultipleTimes = CronTools.CronBuilder.Create()
+        var weekdaysMultipleTimes = CronBuilder.Create()
             .AtMinute(0)
             .AtHours(9, 17)
             .OnWeekdays(1, 2, 3, 4, 5)
@@ -53,7 +53,7 @@ internal class Program
         Console.WriteLine($"Weekdays at 9 AM and 5 PM: {weekdaysMultipleTimes}");
 
         // Complex schedule
-        var complex = CronTools.CronBuilder.Create()
+        var complex = CronBuilder.Create()
             .AtSecond(30)
             .AtMinutes(0, 15, 30, 45)
             .AtHours(9, 12, 15, 18)
@@ -63,7 +63,7 @@ internal class Program
         Console.WriteLine($"Complex schedule: {complex}");
 
         // Days 10-20 of months 4-10 at 2 PM
-        var rangeExample = CronTools.CronBuilder.Create()
+        var rangeExample = CronBuilder.Create()
             .AtMinute(0)
             .AtHour(14)
             .OnDaysBetween(10, 20)
@@ -72,7 +72,7 @@ internal class Program
         Console.WriteLine($"Days 10-20 of months 4-10 at 2 PM: {rangeExample}");
 
         // Every 2 hours on weekdays
-        var everyTwoHours = CronTools.CronBuilder.Create()
+        var everyTwoHours = CronBuilder.Create()
             .AtMinute(0)
             .EveryNHours(2)
             .OnWeekdays(1, 2, 3, 4, 5)
@@ -84,23 +84,23 @@ internal class Program
         Console.WriteLine("--------------------------");
 
         // Daily at noon
-        var dailyNoon = CronTools.CronBuilder.Create().DailyAt(12, 0).Build();
+        var dailyNoon = CronBuilder.Create().DailyAt(12, 0).Build();
         Console.WriteLine($"Daily at noon: {dailyNoon}");
 
         // Daily at midnight
-        var dailyMidnight = CronTools.CronBuilder.Create().DailyAt(0, 0).Build();
+        var dailyMidnight = CronBuilder.Create().DailyAt(0, 0).Build();
         Console.WriteLine($"Daily at midnight: {dailyMidnight}");
 
         // Weekly meeting (Monday 10 AM)
-        var weeklyMeeting = CronTools.CronBuilder.Create().WeeklyAt(1, 10, 0).Build();
+        var weeklyMeeting = CronBuilder.Create().WeeklyAt(1, 10, 0).Build();
         Console.WriteLine($"Weekly meeting (Monday 10 AM): {weeklyMeeting}");
 
         // Monthly report (1st at 9 AM)
-        var monthlyReport = CronTools.CronBuilder.Create().MonthlyAt(1, 9, 0).Build();
+        var monthlyReport = CronBuilder.Create().MonthlyAt(1, 9, 0).Build();
         Console.WriteLine($"Monthly report (1st at 9 AM): {monthlyReport}");
 
         // First day of month at 8:30 AM
-        var firstDayOfMonth = CronTools.CronBuilder.Create()
+        var firstDayOfMonth = CronBuilder.Create()
             .AtMinute(30)
             .AtHour(8)
             .OnDay(1)
@@ -112,34 +112,34 @@ internal class Program
         Console.WriteLine("---------------");
 
         // Common presets
-        var everyMinute = CronTools.CronBuilder.Create().EveryMinute().Build();
+        var everyMinute = CronBuilder.Create().EveryMinute().Build();
         Console.WriteLine($"Every minute: {everyMinute}");
 
-        var everyFiveMin = CronTools.CronBuilder.Create().EveryNMinutes(5).Build();
+        var everyFiveMin = CronBuilder.Create().EveryNMinutes(5).Build();
         Console.WriteLine($"Every 5 minutes: {everyFiveMin}");
 
-        var everyFifteenMin = CronTools.CronBuilder.Create().EveryNMinutes(15).Build();
+        var everyFifteenMin = CronBuilder.Create().EveryNMinutes(15).Build();
         Console.WriteLine($"Every 15 minutes: {everyFifteenMin}");
 
-        var hourly = CronTools.CronBuilder.Create().Hourly().Build();
+        var hourly = CronBuilder.Create().Hourly().Build();
         Console.WriteLine($"Every hour: {hourly}");
 
-        var everySixHours = CronTools.CronBuilder.Create().EveryNHours(6).Build();
+        var everySixHours = CronBuilder.Create().EveryNHours(6).Build();
         Console.WriteLine($"Every 6 hours: {everySixHours}");
 
-        var dailyDefault = CronTools.CronBuilder.Create().Daily().Build();
+        var dailyDefault = CronBuilder.Create().Daily().Build();
         Console.WriteLine($"Daily: {dailyDefault}");
 
-        var weeklyDefault = CronTools.CronBuilder.Create().AtHour(9).OnMonday().Build();
+        var weeklyDefault = CronBuilder.Create().AtHour(9).OnMonday().Build();
         Console.WriteLine($"Weekly (Monday): {weeklyDefault}");
 
-        var monthlyDefault = CronTools.CronBuilder.Create().OnDay(1).Build();
+        var monthlyDefault = CronBuilder.Create().OnDay(1).Build();
         Console.WriteLine($"Monthly: {monthlyDefault}");
 
-        var weekdaysAt9 = CronTools.CronBuilder.Create().AtHour(9).OnWeekdays().Build();
+        var weekdaysAt9 = CronBuilder.Create().AtHour(9).OnWeekdays().Build();
         Console.WriteLine($"Weekdays at 9 AM: {weekdaysAt9}");
 
-        var weekendsAt10 = CronTools.CronBuilder.Create().AtHour(10).OnWeekends().Build();
+        var weekendsAt10 = CronBuilder.Create().AtHour(10).OnWeekends().Build();
         Console.WriteLine($"Weekends at 10 AM: {weekendsAt10}");
 
         Console.WriteLine();
@@ -178,15 +178,15 @@ internal class Program
         // 演示CronBuilder的中文描述功能
         var builders = new[]
         {
-            ("每天", CronTools.CronBuilder.Create()),
-            ("每天上午8点", CronTools.CronBuilder.Create().AtHour(8)),
-            ("每周一", CronTools.CronBuilder.Create().OnMonday()),
-            ("每周一和周三下午3点", CronTools.CronBuilder.Create().AtHour(15).OnWeekdays(1, 3)),
-            ("每月15号", CronTools.CronBuilder.Create().OnDay(15)),
-            ("每5分钟", CronTools.CronBuilder.Create().EveryNMinutes(5)),
-            ("每2小时在30分", CronTools.CronBuilder.Create().AtMinute(30).EveryNHours(2)),
-            ("每3天", CronTools.CronBuilder.Create().EveryNDays(3)),
-            ("每周一、三、五", CronTools.CronBuilder.Create().OnWeekdays(1, 3, 5))
+            ("每天", CronBuilder.Create()),
+            ("每天上午8点", CronBuilder.Create().AtHour(8)),
+            ("每周一", CronBuilder.Create().OnMonday()),
+            ("每周一和周三下午3点", CronBuilder.Create().AtHour(15).OnWeekdays(1, 3)),
+            ("每月15号", CronBuilder.Create().OnDay(15)),
+            ("每5分钟", CronBuilder.Create().EveryNMinutes(5)),
+            ("每2小时在30分", CronBuilder.Create().AtMinute(30).EveryNHours(2)),
+            ("每3天", CronBuilder.Create().EveryNDays(3)),
+            ("每周一、三、五", CronBuilder.Create().OnWeekdays(1, 3, 5))
         };
 
         foreach (var (expectedDesc, builder) in builders)
