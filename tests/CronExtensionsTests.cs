@@ -1,6 +1,5 @@
 using FluentAssertions;
 using Xunit;
-using CronTools;
 
 namespace CronTools.Tests;
 
@@ -13,7 +12,7 @@ public class CronExtensionsTests
     public void DailyAt_WithValidParameters_ShouldCreateCorrectExpression(int hour, int minute, int second, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.DailyAt(hour, minute, second).Build();
@@ -26,7 +25,7 @@ public class CronExtensionsTests
     public void DailyAt_WithDefaultSecond_ShouldUseZero()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.DailyAt(9, 30).Build();
@@ -42,7 +41,7 @@ public class CronExtensionsTests
     public void WeeklyAt_WithValidParameters_ShouldCreateCorrectExpression(int dayOfWeek, int hour, int minute, int second, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.WeeklyAt(dayOfWeek, hour, minute, second).Build();
@@ -55,7 +54,7 @@ public class CronExtensionsTests
     public void WeeklyAt_WithDefaultSecond_ShouldUseZero()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.WeeklyAt(1, 9, 30).Build();
@@ -71,7 +70,7 @@ public class CronExtensionsTests
     public void MonthlyAt_WithValidParameters_ShouldCreateCorrectExpression(int dayOfMonth, int hour, int minute, int second, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.MonthlyAt(dayOfMonth, hour, minute, second).Build();
@@ -84,7 +83,7 @@ public class CronExtensionsTests
     public void MonthlyAt_WithDefaultSecond_ShouldUseZero()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.MonthlyAt(15, 10, 30).Build();
@@ -97,7 +96,7 @@ public class CronExtensionsTests
     public void AtStartOfHour_ShouldCreateCorrectExpression()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.AtStartOfHour().Build();
@@ -110,7 +109,7 @@ public class CronExtensionsTests
     public void AtMidnight_ShouldCreateCorrectExpression()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.AtMidnight().Build();
@@ -123,7 +122,7 @@ public class CronExtensionsTests
     public void AtNoon_ShouldCreateCorrectExpression()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.AtNoon().Build();
@@ -139,7 +138,7 @@ public class CronExtensionsTests
     public void OnFirstDayOfMonth_WithParameters_ShouldCreateCorrectExpression(int hour, int minute, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnFirstDayOfMonth(hour, minute).Build();
@@ -152,7 +151,7 @@ public class CronExtensionsTests
     public void OnFirstDayOfMonth_WithDefaults_ShouldUseZeroHourAndMinute()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnFirstDayOfMonth().Build();
@@ -168,7 +167,7 @@ public class CronExtensionsTests
     public void OnLastDayOfMonth_WithParameters_ShouldCreateCorrectExpression(int hour, int minute, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnLastDayOfMonth(hour, minute).Build();
@@ -181,7 +180,7 @@ public class CronExtensionsTests
     public void OnLastDayOfMonth_WithDefaults_ShouldUseZeroHourAndMinute()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnLastDayOfMonth().Build();
@@ -194,7 +193,7 @@ public class CronExtensionsTests
     public void IsValid_WithValidBuilder_ShouldReturnTrue()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create().DailyAt(9, 30);
+        var builder = CronBuilder.Create().DailyAt(9, 30);
 
         // Act
         var result = builder.IsValid();
@@ -207,7 +206,7 @@ public class CronExtensionsTests
     public void GetNextExecutionTime_WithValidBuilder_ShouldReturnFutureTime()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create().DailyAt(12, 0);
+        var builder = CronBuilder.Create().DailyAt(12, 0);
         var fromTime = new DateTime(2023, 1, 1, 10, 0, 0);
 
         // Act
@@ -221,7 +220,7 @@ public class CronExtensionsTests
     public void GetNextExecutionTime_WithoutFromTime_ShouldUseCurrentTime()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create().DailyAt(12, 0);
+        var builder = CronBuilder.Create().DailyAt(12, 0);
         var beforeCall = DateTime.Now;
 
         // Act
@@ -358,7 +357,7 @@ public class CronPresetsTests
     public void EveryNHours_ShouldReturnCorrectExpression()
     {
         // Act
-        var result = CronTools.CronBuilder.Create().EveryNHours(6).Build();
+        var result = CronBuilder.Create().EveryNHours(6).Build();
 
         // Assert
         result.Should().Be("0 0 */6 * * ? *");
@@ -368,7 +367,7 @@ public class CronPresetsTests
     public void OnWeekends_ShouldReturnCorrectExpression()
     {
         // Act
-        var result = CronTools.CronBuilder.Create().OnWeekends().Build();
+        var result = CronBuilder.Create().OnWeekends().Build();
 
         // Assert
         result.Should().Be("0 0 0 ? * 6,7 *");
@@ -378,7 +377,7 @@ public class CronPresetsTests
     public void AtMidnight_ShouldReturnCorrectExpression()
     {
         // Act
-        var result = CronTools.CronBuilder.Create().AtMidnight().Build();
+        var result = CronBuilder.Create().AtMidnight().Build();
 
         // Assert
         result.Should().Be("0 0 0 * * ? *");
@@ -388,7 +387,7 @@ public class CronPresetsTests
     public void AtNoon_ShouldReturnCorrectExpression()
     {
         // Act
-        var result = CronTools.CronBuilder.Create().AtNoon().Build();
+        var result = CronBuilder.Create().AtNoon().Build();
 
         // Assert
         result.Should().Be("0 0 12 * * ? *");
@@ -398,7 +397,7 @@ public class CronPresetsTests
     public void OnLastDayOfMonth_ShouldReturnCorrectExpression()
     {
         // Act
-        var result = CronTools.CronBuilder.Create().OnLastDayOfMonth().Build();
+        var result = CronBuilder.Create().OnLastDayOfMonth().Build();
 
         // Assert
         result.Should().Be("0 0 0 31 * ? *");
@@ -408,7 +407,7 @@ public class CronPresetsTests
     public void OnFirstDayOfMonth_ShouldReturnCorrectExpression()
     {
         // Act
-        var result = CronTools.CronBuilder.Create().OnFirstDayOfMonth().Build();
+        var result = CronBuilder.Create().OnFirstDayOfMonth().Build();
 
         // Assert
         result.Should().Be("0 0 0 1 * ? *");

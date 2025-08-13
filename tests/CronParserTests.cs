@@ -1,6 +1,5 @@
 using FluentAssertions;
 using Xunit;
-using CronTools;
 
 namespace CronTools.Tests;
 
@@ -10,8 +9,8 @@ public class CronParserTests
     [InlineData("0 0 12 * * ? *", "0", "0", "12", "*", "*", "?", "*")]
     [InlineData("30 15 10 ? * 1-5 2023", "30", "15", "10", "?", "*", "1-5", "2023")]
     [InlineData("0 */5 * * * ? *", "0", "*/5", "*", "*", "*", "?", "*")]
-    public void Parse_WithValidExpression_ShouldReturnCorrectComponents(string expression, 
-        string expectedSeconds, string expectedMinutes, string expectedHours, 
+    public void Parse_WithValidExpression_ShouldReturnCorrectComponents(string expression,
+        string expectedSeconds, string expectedMinutes, string expectedHours,
         string expectedDayOfMonth, string expectedMonth, string expectedDayOfWeek, string expectedYear)
     {
         // Act

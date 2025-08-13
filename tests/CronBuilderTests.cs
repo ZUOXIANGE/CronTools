@@ -1,6 +1,5 @@
 using FluentAssertions;
 using Xunit;
-using CronTools;
 
 namespace CronTools.Tests;
 
@@ -10,11 +9,11 @@ public class CronBuilderTests
     public void Create_ShouldReturnNewInstance()
     {
         // Act
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Assert
         builder.Should().NotBeNull();
-        builder.Should().BeOfType<CronTools.CronBuilder>();
+        builder.Should().BeOfType<CronBuilder>();
     }
 
     [Theory]
@@ -24,7 +23,7 @@ public class CronBuilderTests
     public void AtSecond_WithValidValue_ShouldSetSeconds(int second, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.AtSecond(second).Build();
@@ -40,7 +39,7 @@ public class CronBuilderTests
     public void AtSecond_WithInvalidValue_ShouldThrowArgumentOutOfRangeException(int second)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.AtSecond(second))
@@ -52,7 +51,7 @@ public class CronBuilderTests
     public void AtSeconds_WithMultipleValues_ShouldSetCorrectExpression()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.AtSeconds(0, 15, 30, 45).Build();
@@ -65,7 +64,7 @@ public class CronBuilderTests
     public void AtSeconds_WithDuplicateValues_ShouldRemoveDuplicates()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.AtSeconds(0, 15, 0, 30, 15).Build();
@@ -81,7 +80,7 @@ public class CronBuilderTests
     public void AtSeconds_WithInvalidValues_ShouldThrowArgumentOutOfRangeException(int[] seconds)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.AtSeconds(seconds))
@@ -93,7 +92,7 @@ public class CronBuilderTests
     public void ComplexCombination_ShouldGenerateCorrectExpression()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder
@@ -112,7 +111,7 @@ public class CronBuilderTests
     public void WeekdayAndDayOfMonth_ShouldPrioritizeWeekday()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder
@@ -128,7 +127,7 @@ public class CronBuilderTests
     public void RangeOperations_ShouldGenerateCorrectExpression()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder
@@ -145,7 +144,7 @@ public class CronBuilderTests
     public void AtSeconds_WithMultipleValues_ShouldSetSecondsCommaSeparated()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.AtSeconds(0, 15, 30, 45).Build();
@@ -158,7 +157,7 @@ public class CronBuilderTests
     public void AtSeconds_WithDuplicateValues_ShouldRemoveDuplicatesAndSort()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.AtSeconds(30, 0, 15, 30, 45, 0).Build();
@@ -174,7 +173,7 @@ public class CronBuilderTests
     public void AtMinute_WithValidValue_ShouldSetMinutes(int minute, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.AtMinute(minute).Build();
@@ -190,7 +189,7 @@ public class CronBuilderTests
     public void AtMinute_WithInvalidValue_ShouldThrowArgumentOutOfRangeException(int minute)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.AtMinute(minute))
@@ -205,7 +204,7 @@ public class CronBuilderTests
     public void AtHour_WithValidValue_ShouldSetHours(int hour, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.AtHour(hour).Build();
@@ -221,7 +220,7 @@ public class CronBuilderTests
     public void AtHour_WithInvalidValue_ShouldThrowArgumentOutOfRangeException(int hour)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.AtHour(hour))
@@ -236,7 +235,7 @@ public class CronBuilderTests
     public void OnDay_WithValidValue_ShouldSetDayOfMonth(int day, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnDay(day).Build();
@@ -253,7 +252,7 @@ public class CronBuilderTests
     public void OnDay_WithInvalidValue_ShouldThrowArgumentOutOfRangeException(int day)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.OnDay(day))
@@ -265,7 +264,7 @@ public class CronBuilderTests
     public void OnDaysBetween_WithValidRange_ShouldSetDayOfMonthRange()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnDaysBetween(10, 20).Build();
@@ -279,7 +278,7 @@ public class CronBuilderTests
     public void OnDaysBetween_WithStartGreaterThanEnd_ShouldThrowArgumentException()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.OnDaysBetween(20, 10))
@@ -294,7 +293,7 @@ public class CronBuilderTests
     public void InMonth_WithValidValue_ShouldSetMonth(int month, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.InMonth(month).Build();
@@ -310,7 +309,7 @@ public class CronBuilderTests
     public void InMonth_WithInvalidValue_ShouldThrowArgumentOutOfRangeException(int month)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.InMonth(month))
@@ -325,7 +324,7 @@ public class CronBuilderTests
     public void InYear_WithValidValue_ShouldSetYear(int year, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.InYear(year).Build();
@@ -341,7 +340,7 @@ public class CronBuilderTests
     public void InYear_WithInvalidValue_ShouldThrowArgumentOutOfRangeException(int year)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.InYear(year))
@@ -356,7 +355,7 @@ public class CronBuilderTests
     public void OnWeekday_WithValidValue_ShouldSetDayOfWeek(int day, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnWeekday(day).Build();
@@ -373,7 +372,7 @@ public class CronBuilderTests
     public void OnWeekday_WithInvalidValue_ShouldThrowArgumentOutOfRangeException(int day)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.OnWeekday(day))
@@ -385,7 +384,7 @@ public class CronBuilderTests
     public void OnMonday_ShouldSetDayOfWeekTo1()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnMonday().Build();
@@ -399,7 +398,7 @@ public class CronBuilderTests
     public void OnTuesday_ShouldSetDayOfWeekTo2()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnTuesday().Build();
@@ -413,7 +412,7 @@ public class CronBuilderTests
     public void OnWednesday_ShouldSetDayOfWeekTo3()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnWednesday().Build();
@@ -427,7 +426,7 @@ public class CronBuilderTests
     public void OnThursday_ShouldSetDayOfWeekTo4()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnThursday().Build();
@@ -441,7 +440,7 @@ public class CronBuilderTests
     public void OnFriday_ShouldSetDayOfWeekTo5()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnFriday().Build();
@@ -455,7 +454,7 @@ public class CronBuilderTests
     public void OnSaturday_ShouldSetDayOfWeekTo6()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnSaturday().Build();
@@ -469,7 +468,7 @@ public class CronBuilderTests
     public void OnSunday_ShouldSetDayOfWeekTo7()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnSunday().Build();
@@ -483,7 +482,7 @@ public class CronBuilderTests
     public void OnWeekdays_ShouldSetDayOfWeekToWeekdays()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnWeekdays().Build();
@@ -497,7 +496,7 @@ public class CronBuilderTests
     public void OnWeekends_ShouldSetDayOfWeekToWeekends()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnWeekends().Build();
@@ -511,7 +510,7 @@ public class CronBuilderTests
     public void Daily_ShouldSetDayOfMonthToAsteriskAndDayOfWeekToQuestion()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.Daily().Build();
@@ -526,7 +525,7 @@ public class CronBuilderTests
     public void Hourly_WithoutParameter_ShouldSetMinutesToZero()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.Hourly().Build();
@@ -541,7 +540,7 @@ public class CronBuilderTests
     public void Hourly_WithParameter_ShouldSetMinutesToSpecifiedValue()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.Hourly(15).Build();
@@ -556,7 +555,7 @@ public class CronBuilderTests
     public void EveryMinute_ShouldSetMinutesToAsterisk()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.EveryMinute().Build();
@@ -573,7 +572,7 @@ public class CronBuilderTests
     public void EveryNMinutes_WithValidInterval_ShouldSetMinutesWithInterval(int interval, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.EveryNMinutes(interval).Build();
@@ -589,7 +588,7 @@ public class CronBuilderTests
     public void EveryNMinutes_WithInvalidInterval_ShouldThrowArgumentOutOfRangeException(int interval)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.EveryNMinutes(interval))
@@ -604,7 +603,7 @@ public class CronBuilderTests
     public void EveryNHours_WithValidInterval_ShouldSetHoursWithInterval(int interval, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.EveryNHours(interval).Build();
@@ -620,7 +619,7 @@ public class CronBuilderTests
     public void EveryNHours_WithInvalidInterval_ShouldThrowArgumentOutOfRangeException(int interval)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.EveryNHours(interval))
@@ -635,7 +634,7 @@ public class CronBuilderTests
     public void EveryNDays_WithValidInterval_ShouldSetDayOfMonthWithInterval(int interval, string expected)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.EveryNDays(interval).Build();
@@ -652,7 +651,7 @@ public class CronBuilderTests
     public void EveryNDays_WithInvalidInterval_ShouldThrowArgumentOutOfRangeException(int interval)
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act & Assert
         builder.Invoking(b => b.EveryNDays(interval))
@@ -664,7 +663,7 @@ public class CronBuilderTests
     public void Build_WithDayOfMonthAndDayOfWeekSet_ShouldPrioritizeDayOfWeek()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.OnDay(15).OnMonday().Build();
@@ -679,7 +678,7 @@ public class CronBuilderTests
     public void Build_WithNeitherDayOfMonthNorDayOfWeekSet_ShouldUseDefaults()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder.Build();
@@ -694,7 +693,7 @@ public class CronBuilderTests
     public void ComplexExpression_ShouldBuildCorrectly()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder
@@ -713,7 +712,7 @@ public class CronBuilderTests
     public void MultipleWeekdaySelection_ShouldCombineCorrectly()
     {
         // Arrange
-        var builder = CronTools.CronBuilder.Create();
+        var builder = CronBuilder.Create();
 
         // Act
         var result = builder
@@ -734,7 +733,7 @@ public class CronBuilderTests
     public void GetChineseDescription_WithDailySchedule_ShouldReturnCorrectDescription()
     {
         // Arrange & Act
-        var description = CronTools.CronBuilder.Create().GetChineseDescription();
+        var description = CronBuilder.Create().GetChineseDescription();
 
         // Assert
         description.Should().Be("每天");
@@ -744,7 +743,7 @@ public class CronBuilderTests
     public void GetChineseDescription_WithSpecificTime_ShouldReturnCorrectDescription()
     {
         // Arrange & Act
-        var description = CronTools.CronBuilder.Create()
+        var description = CronBuilder.Create()
             .AtHour(8)
             .GetChineseDescription();
 
@@ -756,7 +755,7 @@ public class CronBuilderTests
     public void GetChineseDescription_WithWeekday_ShouldReturnCorrectDescription()
     {
         // Arrange & Act
-        var description = CronTools.CronBuilder.Create()
+        var description = CronBuilder.Create()
             .OnMonday()
             .GetChineseDescription();
 
@@ -768,7 +767,7 @@ public class CronBuilderTests
     public void GetChineseDescription_WithComplexSchedule_ShouldReturnCorrectDescription()
     {
         // Arrange & Act
-        var description = CronTools.CronBuilder.Create()
+        var description = CronBuilder.Create()
             .AtHour(15)
             .OnWeekdays(1, 3)
             .GetChineseDescription();
@@ -781,7 +780,7 @@ public class CronBuilderTests
     public void GetChineseDescription_WithMonthlySchedule_ShouldReturnCorrectDescription()
     {
         // Arrange & Act
-        var description = CronTools.CronBuilder.Create()
+        var description = CronBuilder.Create()
             .OnDay(15)
             .GetChineseDescription();
 

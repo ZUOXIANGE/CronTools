@@ -1,5 +1,3 @@
-using CronTools;
-
 namespace CronTools.Examples;
 
 internal class Program

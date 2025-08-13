@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace CronTools;
@@ -94,8 +91,6 @@ public static class CronParser
 
     private static string BuildChineseDescription(CronExpression cron)
     {
-        var parts = new List<string>();
-
         // 处理频率模式
         if (cron.Minutes.StartsWith("*/"))
         {
