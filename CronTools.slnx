@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="src/CronTools.csproj" />
+  <Project Path="examples/CronTools.Examples.csproj" />
+  <Project Path="tests/CronTools.Tests.csproj" />
+</Solution>

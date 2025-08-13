@@ -1,0 +1,30 @@
+<Project>
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <WarningsNotAsErrors>CS1591</WarningsNotAsErrors>
+    <LangVersion>latest</LangVersion>
+    <Authors>ZUOXIANGE</Authors>
+    <Copyright>Copyright © 2024 CronBuilder</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ZUOXIANGE/CronBuilder</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ZUOXIANGE/CronBuilder</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>cron;scheduler;expression;builder;dotnet</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+</Project>
